@@ -1,0 +1,18 @@
+.layout-content {
+  height: calc(100vh - 117px);
+}
+:host {
+  ::-webkit-scrollbar {
+      width: 6px;              
+  }
+  
+  ::-webkit-scrollbar-track {
+      background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+      background-color: var(--gray-500);
+      border-radius: 20px;
+  }
+}
+

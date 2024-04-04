@@ -1,0 +1,155 @@
+<div *ngIf="objectDetails">
+  <ng-container *ngFor="let itemData of objectDetails">
+    <br />
+    <p-panel [toggleable]="true" [collapsed]="true">
+      <ng-template pTemplate="header">
+        <div class="grid formgrid p-fluid">
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label class="font-medium text-900">Id</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData?.ObjectId }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label class="font-medium text-900">Parent Object Id</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData?.ParentObjectId }}
+            </p>
+          </div>
+
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label class="font-medium text-900">Detail Id</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData?.ObjectDetailId }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label class="font-medium text-900">Object Name</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData?.ObjectName }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex" *ngIf="itemData?.Value">
+            <label class="font-medium text-900">Value</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData?.Value }}
+            </p>
+          </div>
+          <div
+            class="mb-2 col-12 md:col-12 d-flex"
+            *ngIf="itemData?.ReferencedObjectName"
+          >
+            <label class="font-medium text-900">Referenced Object Name</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData?.ReferencedObjectName }}
+            </p>
+          </div>
+          <div
+            class="mb-2 col-12 md:col-12 d-flex"
+            *ngIf="itemData?.DataTypeName"
+          >
+            <label class="font-medium text-900">Data Type Name</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData?.DataTypeName }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex" *ngIf="itemData?.SQLType">
+            <label class="font-medium text-900">SQL Type</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData?.SQLType }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="country" class="font-medium text-900">Created At</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.ObjectCreatedDate | date : "medium" }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900"
+              >Object Created By User</label
+            >
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.ObjectCreatedByUser }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900">Locale Name</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.LocaleName }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900"
+              >Locale Short Code</label
+            >
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.ShortCode }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900">Icon Name</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.IconName }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900">Icon Code</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.IconCode }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900">Icon</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              <i class="pi pi-fw {{ itemData.IconCode }}"></i>
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900">Sort Order</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.SortOrder }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900">Custom Data</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.CustomData || "n/a" }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900">Precision</label>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.Precision || "n/a" }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="country" class="font-medium text-900"
+              >Object Created At</label
+            >
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.ObjectDetailCreatedDate | date : "medium" }}
+            </p>
+          </div>
+          <div class="mb-2 col-12 md:col-12 d-flex">
+            <label for="city" class="font-medium text-900"
+              >Object Detail Created By User</label
+            >
+            <p class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style">
+              {{ itemData.ObjectDetailCreatedByUser }}
+            </p>
+          </div>
+        </div>
+      </ng-template>
+
+      <div *ngIf="itemData.Children">
+        <app-object-details
+          [objectDetails]="itemData.Children"
+        ></app-object-details>
+      </div>
+      <div *ngIf="!itemData.Children || itemData.Children.length === 0">
+        <p>No Object Record</p>
+      </div>
+    </p-panel>
+  </ng-container>
+</div>

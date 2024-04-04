@@ -1,0 +1,144 @@
+<div class="card tree_layout_custom">
+  <p-splitter
+    [panelSizes]="[30, 70]"
+    [style]="{ height: '500px' }"
+    styleClass="mb-0"
+  >
+    <ng-template pTemplate>
+      <div class="d-flex p-3 pb-0 toggle_buttons">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Expand all"
+          (click)="expandAll()"
+          class="p-element p-ripple p-button-outlined w-10rem p-button p-component"
+        >
+          Expand all
+        </button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Collapse all"
+          (click)="collapseAll()"
+          class="p-element p-ripple p-button-outlined w-10rem p-button p-component"
+        >
+          Collapse all
+        </button>
+      </div>
+      <p-tree
+        [value]="files"
+        selectionMode="single"
+        (onNodeSelect)="nodeSelect($event)"
+        [(selection)]="selectedFile"
+        [filter]="true"
+        filterPlaceholder="Search Here"
+      >
+        ></p-tree
+      >
+    </ng-template>
+    <ng-template pTemplate>
+      <div *ngIf="isParentView" style="width: 100%">
+        <p-tabView styleClass="tabview-custom">
+          <p-tabPanel>
+            <ng-template pTemplate="header">
+              <i class="pi pi-fw pi-folder-open">&nbsp;</i>
+              <span>Details</span>
+            </ng-template>
+            <p-panel [toggleable]="true">
+              <ng-template pTemplate="header">
+                <div class="flex align-items-center" *ngIf="objectInfo">
+                  <div class="grid formgrid p-fluid">
+                    <div class="mb-2 col-12 md:col-12 d-flex">
+                      <label class="font-medium text-900">Id:</label>
+                      <p
+                        class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style"
+                      >
+                        {{ objectInfo?.Id }}
+                      </p>
+                    </div>
+                    <div class="mb-2 col-12 md:col-12 d-flex">
+                      <label class="font-medium text-900">Name:</label>
+                      <p
+                        class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style"
+                      >
+                        {{ objectInfo?.Name }}
+                      </p>
+                    </div>
+                    <div class="mb-2 col-12 md:col-12 d-flex">
+                      <label class="font-medium text-900">Custom Prefix:</label>
+                      <p
+                        class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style"
+                      >
+                        {{ objectInfo?.CustomPrefix || "n/a" }}
+                      </p>
+                    </div>
+                    <div class="mb-2 col-12 md:col-12 d-flex">
+                      <label class="font-medium text-900">Custom Suffix:</label>
+                      <p
+                        class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style"
+                      >
+                        {{ objectInfo?.CustomSuffix || "n/a" }}
+                      </p>
+                    </div>
+                    <div class="mb-2 col-12 md:col-12 d-flex">
+                      <label for="country" class="font-medium text-900"
+                        >Created At</label
+                      >
+                      <p
+                        class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style"
+                      >
+                        {{ objectInfo.CreatedAt | date : "medium" }}
+                      </p>
+                    </div>
+                    <div class="mb-2 col-12 md:col-12 d-flex">
+                      <label for="city" class="font-medium text-900"
+                        >Created By User</label
+                      >
+                      <p
+                        class="m-0 p-0 text-600 line-height-3 mr-3 text_field_style"
+                      >
+                        {{ objectInfo.Username }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <app-object-details
+                [objectDetails]="objectDetails"
+              ></app-object-details>
+              <div *ngIf="!objectDetails || objectDetails.length === 0">
+                <div class="card flex justify-content-center">
+                  <p-progressSpinner
+                    styleClass="w-3rem h-3rem"
+                    strokeWidth="6"
+                    fill="var(--primary-color)"
+                    animationDuration=".5s"
+                  ></p-progressSpinner>
+                </div>
+              </div>
+            </p-panel>
+          </p-tabPanel>
+          <p-tabPanel header="References">
+            <ng-template pTemplate="header">
+              <i class="pi pi-fw pi-link">&nbsp;</i>
+              <span>References</span>
+            </ng-template>
+            <p>Coming Soon</p>
+          </p-tabPanel>
+          <p-tabPanel header="References By">
+            <ng-template pTemplate="header">
+              <i class="pi pi-fw pi-code">&nbsp;</i>
+              <span>References By</span>
+            </ng-template>
+            <p>Coming Soon</p>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+      <div *ngIf="!isParentView">
+        <div class="col">{{ objectDataValue }}</div>
+      </div>
+    </ng-template>
+  </p-splitter>
+</div>

@@ -1,0 +1,94 @@
+<form [formGroup]="inviteSubuserForm">
+    <p-toast></p-toast>
+    <div class="card">
+        <span class="text-900 text-xl font-bold mb-4 block">Create User</span>
+        <div class="grid">
+            <div class="col-12 lg:col-12">
+                <div class="grid formgrid p-fluid">
+                    <div class="field mb-4 col-12 md:col-6">
+                        <label for="firstName" class="font-medium text-900">First Name</label>
+                        <input id="firstName" type="text" pInputText formControlName="firstName">
+                    </div>
+                    <div class="field mb-4 col-12 md:col-6">
+                        <label for="lastName" class="font-medium text-900">Last Name</label>
+                        <input id="lastName" type="text" pInputText formControlName="lastName">
+                    </div>
+
+                    <div class="field mb-4 col-12">
+                        <label for="avatar" class="font-medium text-900">Profile Picture</label>
+                        <p-fileUpload #fileUpload name="myfile" [customUpload]="true" 
+                            (onSelect)="uploadfun($event)" [auto]="true" accept="image/*" [showUploadButton]="false">
+                        </p-fileUpload>
+                    </div>
+                    <div class="field mb-4 col-12 md:col-6">
+                        <label for="email" class="font-medium text-900">Email</label>
+                        <input id="email" type="text" pInputText formControlName="email"
+                            placeholder="Enter Email Address">
+                        <small class="p-error"
+                            *ngIf="inviteSubuserForm.get('email')?.invalid && inviteSubuserForm.get('email')?.touched">
+                            Email is required.
+                        </small>
+                    </div>
+                    <div class="field mb-4 col-12 md:col-6">
+                        <label for="roleType" class="font-medium text-900">Role</label>
+                        <p-dropdown [options]="rolesPermission" [showClear]="true" placeholder="Select a Role"
+                            id="roleType" formControlName="role">
+                        </p-dropdown>
+                    </div>
+                    <div class="field mb-6 col-12 md:col-6">
+                        <label for="countryCode" class="font-medium text-900">Mobile</label>
+                        <div class="grid formgrid">
+                            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                                <p-dropdown inputId="countryCode" [options]="dialCode" [filter]="true" filterBy="name"
+                                    [showClear]="true" placeholder="ISDCode" formControlName="countryCode"
+                                    optionLabel="isdCode" displayProperty = "isdCode" [editable]="true">
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="flex align-items-center">
+                                            <img src="assets/demo/images/flag/flag_placeholder.png"
+                                                [class]="'mr-2 flag flag-' + country.code.toLowerCase()"
+                                                style="width:18px" />
+                                            <div>{{country.isdCode}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+
+                            </div>
+                            <div class="col-12 mb-2 lg:col-9 lg:mb-0">
+                                <input id="mobileNumber" type="number" pInputText placeholder="Enter Mobile Number"
+                                    formControlName="mobileNumber">
+                                    <small class="p-error"
+                                    *ngIf="inviteSubuserForm.get('mobileNumber')?.invalid && inviteSubuserForm.get('mobileNumber')?.touched">
+                                    mobileNumber is required.
+                                </small>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="field mb-4 col-12 md:col-6">
+                        <label for="country" class="font-medium text-900">Country</label>
+                        <p-dropdown inputId="country" [options]="countries" [filter]="true" filterBy="name"
+                            [showClear]="true" placeholder="Select a Country" formControlName="country"
+                            optionLabel="name" displayProperty = "name" [editable]="true" >
+                            <ng-template let-country pTemplate="item">
+                                <div class="flex align-items-center">
+                                    <img src="assets/demo/images/flag/flag_placeholder.png"
+                                        [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width:18px" />
+                                    <div>{{country.name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                    <div class="col-12">
+                        <button pButton pRipple class="p-button-outlined w-8rem mr-3" icon="pi pi-times" label="Cancel"
+                            (click)="goBack()"></button>
+                        <button pButton pRipple label="Save" class="w-8rem mr-3" icon="pi pi-check"
+                            (click)="inviteSubuser()" [loading]="loading"
+                            [disabled]="inviteSubuserForm.invalid"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
